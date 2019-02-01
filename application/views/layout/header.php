@@ -10,7 +10,10 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap-dropdown.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap-tabs.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/global.js"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6mYvDXtR8wwPTaWKEqD3DyfN84RrgJoo"></script>
+
+	<!-- Maps -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>js/leaflet/leaflet.css" />
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/leaflet/leaflet.js"></script>
 
 	<!-- CSS Files -->
 	<link type="text/css" href="<?php echo base_url(); ?>css/flick/jquery-ui-1.8.12.custom.css" rel="stylesheet" />
@@ -46,9 +49,9 @@
 			<li class="dropdown" data-dropdown="dropdown" >
 				<a href="#" class="dropdown-toggle">QSOs</a>
 				<ul class="dropdown-menu">
-				 <li><a href="<?php echo site_url('qso');?>" title="qso">Live QSOs</a></li>
+				 <li><a href="<?php echo site_url('qso?manual=0');?>" title="Live QSOs">Live QSOs</a></li>
 				  <li class="divider"></li>
-				  <li><a href="<?php echo site_url('qso/manual');?>" title="Notes">Post QSOs</a></li>
+				  <li><a href="<?php echo site_url('qso?manual=1');?>" title="Post QSOs">Post QSOs</a></li>
 			</ul>
 
 			<?php } ?>
@@ -67,20 +70,16 @@
 			<?php } ?>
 			<li><a href="<?php echo site_url('statistics');?>" title="Statistics">Statistics</a></li>
 
+
 			<?php if(($this->config->item('use_auth') && $this->session->userdata('user_type') >= 99) || $this->config->item('use_auth') === FALSE) { ?>
 
-			<li class="dropdown" data-dropdown="dropdown" >
-				<a href="#" class="dropdown-toggle">Tools</a>
-				<ul class="dropdown-menu">
-				 <li><a href="<?php echo site_url('awards');?>" title="">Awards</a></li>
-				 <li><a href="<?php echo site_url('dxcluster');?>" title="DX Cluster">Cluster</a></li>
-				</ul>
-			</li>
+			<li><a href="<?php echo site_url('awards');?>" title="Awards">Awards</a></li>
 
 			<li class="dropdown" data-dropdown="dropdown" >
 				<a href="#" class="dropdown-toggle">Admin</a>
 				<ul class="dropdown-menu">
 					<li><a href="<?php echo site_url('user');?>" title="Users">Users</a></li>
+					<li><a href="<?php echo site_url('station');?>" title="Station Profile">Station Profile</a></li>
 					<li><a href="<?php echo site_url('radio');?>" title="Backup">Radios</a></li>
 					<li><a href="<?php echo site_url('backup');?>" title="Backup">Backup</a></li>
 					<li><a href="<?php echo site_url('adif/import');?>" title="ADIF Import">ADIF Import</a></li>

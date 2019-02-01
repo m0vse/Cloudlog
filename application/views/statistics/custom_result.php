@@ -10,9 +10,9 @@
 	<h2><?php echo $page_title; ?></h2>
 
 	<ul class="tabs">
-	  <li><a href="statistics">General</a></li>
-	  <li><a href="statistics">Satellite Contacts</a></li>
-	  <li class="active"><a href="statistics/custom">Custom</a></li>
+	  <li><a href="<?php echo site_url('statistics');?>#home">General</a></li>
+	  <li><a href="<?php echo site_url('statistics');?>#space">Satellite Contacts</a></li>
+	  <li class="active"><a href="<?php echo site_url('statistics');?>/custom">Custom</a></li>
 	</ul>
 	
 		<p>This is a work in-progress</p>
@@ -30,12 +30,12 @@
 				<table>
 					<tr>
 						<td>Start</td>
-						<td><input type="text" id="start_date" name="start_date" value="" /></td>
+						<td><input type="text" id="start_date" name="start_date" value="" autocomplete="off"/></td>
 					</tr>
 					
 					<tr>
 						<td>End</td>
-						<td><input type="text" id="end_date" name="end_date" value="" /></td>
+						<td><input type="text" id="end_date" name="end_date" value="" autocomplete="off"/></td>
 					</tr>
 				</table>
 			</div>

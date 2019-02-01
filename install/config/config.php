@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $config['app_name'] = "Cloudlog";
-$config['app_version'] = "1.5";
+$config['app_version'] = "1.7";
 $config['directory'] = "%directory%";
 $config['callbook'] = "hamqth"; // Options are hamqth or qrz
 
@@ -31,6 +31,19 @@ $config['callbook'] = "hamqth"; // Options are hamqth or qrz
 $config['table_name'] = "TABLE_HRD_CONTACTS_V01"; 
 $config['locator'] = "%baselocator%"; 
 $config['display_freq'] = false;
+
+
+/*
+|--------------------------------------------------------------------------
+| QRZ Login Options
+|--------------------------------------------------------------------------
+|
+| 	'qrz_username'	QRZ.com user login
+|	'qrz_password'	QRZ.com user password
+*/
+
+$config['qrz_username'] = "";
+$config['qrz_password'] = "";
 
 /*
 |--------------------------------------------------------------------------
@@ -541,7 +554,8 @@ $config['compress_output'] = FALSE;
 | helper' page of the user guide for information regarding date handling.
 |
 */
-$config['time_reference'] = 'local';
+$config['time_reference'] = 'UTC';
+date_default_timezone_set ( $config['time_reference'] );
 
 /*
 |--------------------------------------------------------------------------

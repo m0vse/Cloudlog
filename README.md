@@ -20,23 +20,27 @@ More information can be found in the [wiki](https://github.com/magicbug/Cloudlog
 
 ## CAT Control
 
-Its possible to interact with your radio if you have a K3, FT-950 or a ICOM radio using a nice application that Rob (M0VFC) has put together called [CloudlogCAT](https://github.com/rmc47/CloudlogCAT). The application is still in active development and lots of new features are due.
+Cloudlog supports pushing radio information just like you would with a desktop operating system this is via a desktop app called [CloudlogCAT](https://github.com/magicbug/CloudlogCAT/releases) this application uses Omni-Rig thus supports most of the radios on the market.
+
+If you use Linux, Mac or just hate Omni-Rig then Tobias (DL4TMA) has made a script called [cloudlog-rigctl-interface](https://github.com/Manawyrm/cloudlog-rigctl-interface) this interfaces rigctl to Cloudlogs CAT API. This script requires PHP-CLI to be installed.  If you would like a pure Bash version, Tony (G0WFV) has you covered with [CloudlogBashCat](https://github.com/g0wfv/CloudlogBashCat) which also synchronises Cloudlog with rigctld.
 
 ## SatPC32 Interface
 
 If your into satellite operations I have written a application [SatPC32 to Cloud Interface](https://github.com/magicbug/SatPC32-To-Cloudlog) which allows automatic population of satellite fields, Cloudlog just sees this as another radio interface.
 
-Code for this is BETA feel free to make modifications and do PRs.
-
 ## QSL Card Labels
 
 I've started building out some scripts to generate labels for sticking on QSL Cards, at the moment it supports 24 label sheets, but theres no reason for it not to support more, these can be found at [Cloudlog-Labels](https://github.com/magicbug/cloudlog-labels)
+
+## Want Cloudlog Hosting?
+
+If you would prefer not to setup Cloudlog yourself [magicbug](https://magicbug.co.uk) offer hosted solutions, this is priced at £3 a month at the moment and they take care of keeping it updated.
 
 ## Contributing
 
 If you would like to contributing in anyway to Cloudlog then its most appreciated, this has been developed in free time, help coding new features or writing documentation is always useful.
 
-Please note that Cloudlog was built using [Codeigniter](https://ellislab.com/codeigniter/user-guide/) version 2 and uses a rather old version of the Bootstrap UI v1.4.0 documentation is available for this when building components.
+Please note that Cloudlog was built using [Codeigniter](https://www.codeigniter.com/docs) version 3 and uses a rather old version of the Bootstrap UI v1.4.0 documentation is available for this when building components.
 
 If you are writing code all javascript and css should be pleased within the js & css folders not within the views where possible. 
 
@@ -44,7 +48,7 @@ If you are writing code all javascript and css should be pleased within the js &
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Peter Goodhall, 2E0SQL
+Copyright (c) 2018 Peter Goodhall, 2M0SQL
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -71,6 +75,11 @@ SOFTWARE.
 * Graham (W5ISP)  [http://www.w5isp.com](http://w5isp.com)
 * Robert (M0VFC)  [http://github.com/rmc47](https://github.com/rmc47)
 * Corby (K0SKW)	  [http://www.k0skw.net/](http://www.k0skw.net/)
+* Andy (GI0VGV)
+* Tobias (DL4TMA) [https://tbspace.de/](https://tbspace.de/)
+* Tony (G0WFV)
+
+## Third Party Interfaces
 
 ![Clublog Logo](http://www.clublog.org/images/clublog.png "Clublog Logo")
 
