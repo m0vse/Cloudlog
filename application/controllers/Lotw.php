@@ -104,8 +104,8 @@ class Lotw extends CI_Controller {
 
 			// Get credentials for LoTW
 			$query = $this->user_model->get_by_id($this->session->userdata('user_id'));
-    		$q = $query->row();
-    		$data['user_lotw_name'] = $q->user_lotw_name;
+    			$q = $query->row();
+    			$data['user_lotw_name'] = $q->user_lotw_name;
 			$data['user_lotw_password'] = $q->user_lotw_password;
 
 			// Get URL for downloading LoTW
@@ -138,7 +138,9 @@ class Lotw extends CI_Controller {
 			// Only pull back entries that belong to this callsign
 			$lotw_call = $this->session->userdata('user_callsign');
 			$lotw_url .= "&qso_owncall=$lotw_call";
-
+			$context = stream_context_create(array(
+   				 'http' => array('ignore_errors' => true),
+			));
 			file_put_contents($file, file_get_contents($lotw_url));
 
 			ini_set('memory_limit', '-1');

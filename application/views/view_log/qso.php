@@ -19,7 +19,8 @@ line-height: 1.7;
 margin: 10px 0;
 }
 	</style>
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6mYvDXtR8wwPTaWKEqD3DyfN84RrgJoo"></script>
+
 </head>
 
 <body onload="initialize()">

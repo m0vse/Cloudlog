@@ -1,7 +1,7 @@
 	<table width="100%">
 		<tr class="titles">
-			<td>Date</td>
-			<td>Time</td>
+			<td>Date/Time</td>
+			<td>Station</td>
 			<td>Call</td>
 			<td>Mode</td>
 			<td>Sent</td>
@@ -22,8 +22,8 @@
 		
 		<?php  $i = 0;  foreach ($results->result() as $row) { ?>
 			<?php  echo '<tr class="tr'.($i & 1).'">'; ?>
-			<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('d/m/y', $timestamp); ?></td>
-			<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('H:i', $timestamp); ?></td>
+			<td><?php $timestamp = strtotime($row->COL_TIME_ON); echo date('d/m/y H:i', $timestamp); ?></td>
+			<td><?php echo $row->COL_STATION_CALLSIGN; ?></td>
 			<td><a class="qsobox" href="<?php echo site_url('logbook/view')."/".$row->COL_PRIMARY_KEY; ?>"><?php echo strtoupper($row->COL_CALL); ?></a></td>
 			<td><?php echo $row->COL_MODE; ?></td>
 			<td><?php echo $row->COL_RST_SENT; ?> <?php if ($row->COL_STX_STRING) { ?><span class="label"><?php echo $row->COL_STX_STRING;?></span><?php } ?></td>

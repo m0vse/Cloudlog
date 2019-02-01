@@ -3786,8 +3786,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_timezone`, `user_name`, `user_password`, `user_email`, `user_type`, `user_callsign`, `user_locator`, `user_firstname`, `user_lastname`) VALUES
-(4, '0', 'm0abc', '$2a$08$r9UF3YhipAY6htSQoZRjeOFDx3Yuh7Zjuh45vKyUN4gO8g5l.saES', 'demo@demo.com', '99', 'M0ABC', 'io91js', 'Demo', 'Account');
 
 CREATE TABLE IF NOT EXISTS `config` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
@@ -3804,7 +3802,5 @@ CREATE TABLE IF NOT EXISTS `config` (
 -- Dumping data for table `config`
 --
 
-INSERT INTO `config` (`id`, `lotw_download_url`, `lotw_upload_url`, `lotw_rcvd_mark`, `lotw_login_url`, `eqsl_download_url`, `eqsl_rcvd_mark`) VALUES
-(1, 'https://p1k.arrl.org/lotwuser/lotwreport.adi', 'https://p1k.arrl.org/lotwuser/upload', 'Y', 'https://p1k.arrl.org/lotwuser/default', 'http://www.eqsl.cc/qslcard/DownloadInBox.cfm', 'Y');
 
 ALTER TABLE `cat` ADD `downlink_freq` INT(11) NOT NULL AFTER `mode`, ADD `uplink_freq` INT(11) NOT NULL AFTER `downlink_freq`, ADD `downlink_mode` VARCHAR(255) NOT NULL AFTER `uplink_freq`, ADD `uplink_mode` VARCHAR(255) NOT NULL AFTER `downlink_mode`, ADD `sat_name` VARCHAR(255) NOT NULL AFTER `uplink_mode`;

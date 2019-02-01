@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap-dropdown.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap-tabs.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/global.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6mYvDXtR8wwPTaWKEqD3DyfN84RrgJoo"></script>
 
 	<!-- CSS Files -->
 	<link type="text/css" href="<?php echo base_url(); ?>css/flick/jquery-ui-1.8.12.custom.css" rel="stylesheet" />
@@ -90,6 +90,7 @@
 					<li><a href="<?php echo site_url('eqsl/import');?>" title="eQSL Import">eQSL Import</a></li>
 					<li><a href="<?php echo site_url('eqsl/export');?>" title="eQSL Import">eQSL Export</a></li>
 					<li><a href="<?php echo site_url('lotw/import');?>" title="LoTW Import">LoTW Import</a></li>
+					<li><a href="<?php echo site_url('qsl/import');?>" title="QSL Import">QSL Import</a></li>
 					<li><a href="<?php echo site_url('update');?>" title="Update Tools">Update Tools</a></li>
 				</ul>
 				</ul>

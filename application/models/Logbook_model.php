@@ -291,7 +291,7 @@ class Logbook_model extends CI_Model {
   }
 
   function get_last_qsos($num) {
-    $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_STX_STRING, COL_SRX_STRING');
+    $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_STX_STRING, COL_SRX_STRING, COL_STATION_CALLSIGN');
     $this->db->order_by("COL_TIME_ON", "desc");
     $this->db->limit($num);
     $query = $this->db->get($this->config->item('table_name'));
@@ -301,7 +301,7 @@ class Logbook_model extends CI_Model {
 
     /* Get All QSOs with a Valid Grid */
     function kml_get_all_qsos() {
-        $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_GRIDSQUARE');
+        $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_GRIDSQUARE, COL_STATION_CALLSIGN');
         $this->db->where('COL_GRIDSQUARE != \'null\'');
         $query = $this->db->get($this->config->item('table_name'));
 
@@ -309,7 +309,7 @@ class Logbook_model extends CI_Model {
     }
 
     function get_date_qsos($date) {
-        $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME');
+        $this->db->select('COL_CALL, COL_BAND, COL_TIME_ON, COL_RST_RCVD, COL_RST_SENT, COL_MODE, COL_NAME, COL_COUNTRY, COL_PRIMARY_KEY, COL_SAT_NAME, COL_STATION_CALLSIGN');
         $this->db->order_by("COL_TIME_ON", "desc");
         $start = $date." 00:00:00";
         $end = $date." 23:59:59";
@@ -582,6 +582,25 @@ class Logbook_model extends CI_Model {
 		}
 	}
 
+	function qsl_update($datetime, $callsign, $band, $qslsent, $qslsvia, $qslsdate, $qslrcvd, $qslrvia, $qslrdate) {
+		$data = array(
+			   'COL_QSL_RCVD' => $qslrcvd,
+			   'COL_QSL_RCVD_VIA' => $qslrvia,
+			   'COL_QSLRDATE' => $qslrdate,
+			   'COL_QSL_SENT' => $qslsent,
+			   'COL_QSL_SENT_VIA' => $qslsvia,
+			   'COL_QSLSDATE' => $qslsdate
+		);
+
+		$this->db->where('date_format(COL_TIME_ON, \'%Y-%m-%d %H:%i\') = "'.$datetime.'"');
+		$this->db->where('COL_CALL', $callsign);
+		$this->db->where('COL_BAND', $band);
+
+		$this->db->update($this->config->item('table_name'), $data);
+
+		return "Updated";
+	}
+
 	function lotw_update($datetime, $callsign, $band, $qsl_date, $qsl_status) {
 		$data = array(
 			   'COL_LOTW_QSLRDATE' => $qsl_date,
@@ -607,7 +626,7 @@ class Logbook_model extends CI_Model {
     	$query = $this->db->get($this->config->item('table_name'));
     	$row = $query->row();
 
-   		return $row->COL_LOTW_QSLRDATE;
+   		return substr($row->COL_LOTW_QSLRDATE,0,10);
   	}
 
 //////////////////////////////
@@ -820,6 +839,13 @@ class Logbook_model extends CI_Model {
                 $band = $CI->frequency->GetBand($myfreq);
         }
 
+	//Store station callsign
+        if(isset($record['station_callsign'])) {
+                $station_callsign = $record['station_callsign'];
+        } else {
+		$station_callsign = "M0VSE";
+        }
+
         // Store IOTA Ref if available
         if(isset($record['iota'])) {
                 $iota = $record['iota'];
@@ -951,6 +977,7 @@ class Logbook_model extends CI_Model {
                'COL_QSL_SENT' => $QSLSENT,
                'COL_LOTW_QSL_SENT' => $LOTWQSLSENT,
                'COL_LOTW_QSL_RCVD' => $LOTWQSLRCVD,
+               'COL_STATION_CALLSIGN' => $station_callsign,
                'COL_MY_RIG' => $my_rig,
                'COL_TX_PWR' => $tx_pwr,
                'COL_MY_GRIDSQUARE' => $my_gridsquare
